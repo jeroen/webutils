@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>Multipart test page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>multipart/form-data test</h1>
+
+    <p class="help-block">A simple form to test the R multipart/form-data parser.</p>
+
+    <form method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="username">User name</label>
+        <input type="text" class="form-control" name="username" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" name="email_address" placeholder="Enter email" required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputFile">A picture (or other file)</label>
+        <input type="file" name="picture" required>
+      </div>
+
+      <div class="radio">
+        <label>
+          <input type="radio" name="food" value="sushi" required>
+            I want sushi
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="food" value="ramen">
+            I want ramen
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
