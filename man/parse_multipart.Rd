@@ -11,14 +11,15 @@ parse_multipart(body, boundary)
 \item{boundary}{boundary string as specified in the \code{Content-Type} request header.}
 }
 \description{
-This function parses a multipart/form-data request, which is usually generated as
-part of an HTML form submission. The result can contain both text values as well
-as (binary) files. They can be distinguished from the \code{filename} attribute.
+Parse a multipart/form-data request, which is usually generated from a HTML form
+submission. The parameters can include both text as well as binary (file) values.
+They can be distinguished from the presence of a \code{filename} attribute.
 }
 \details{
 A multipart/form-data request consists of a single body which contains one or more
-values separated with a boundary string. This boundary string is chosen by the client
-(e.g. the browser) and specified in the \code{Content-Type} header of the HTTP request.
+values with meta data, each separated using a boundary string. This boundary string
+is chosen by the client (e.g. the browser) and specified in the \code{Content-Type}
+header of the HTTP request.
 
 The parse is written in pure R, but still pretty fast.
 }

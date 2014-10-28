@@ -6,7 +6,7 @@
 demo_httpuv()
 }
 \description{
-This function starts a web server using httpuv and hosts a simple form which
-will be parsed by the multipart parser.
+Starts the httpuv web server and hosts a simple form including a file
+upload to demo the multipart parser.
 }
 

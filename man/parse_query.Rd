@@ -6,11 +6,17 @@
 parse_query(query)
 }
 \description{
-Parse a query string (the part after the question mark of a URL). This
-includes decoding of URL encoded values.
+Parse http parameters from a query string. This includes unescaping
+of url-encoded values.
+}
+\details{
+For http GET requests, the query string is specified
+in the URL after the question mark. For http POST or PUT requests, the query
+string can be used in the request body when the \code{Content-Type} header
+is set to \code{application/x-www-form-urlencoded}.
 }
 \examples{
-myquery <- "foo=1\%2B1\%3D2&bar=yin\%26yang"
-parse_query(myquery)
+q <- "foo=1\%2B1\%3D2&bar=yin\%26yang"
+parse_query(q)
 }
 

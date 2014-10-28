@@ -1,7 +1,7 @@
 #' Demo multipart parser with rhttpd
 #'
-#' This function starts the Rhttpd web server and hosts a simple form which
-#' will be parsed by the multipart parser.
+#' Starts the Rhttpd web server and hosts a simple form including a file
+#' upload to demo the multipart parser.
 #
 #' @export
 #' @importFrom tools startDynamicHelp

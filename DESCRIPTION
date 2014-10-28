@@ -5,7 +5,7 @@ Version: 0.1
 Date: 2014-10-29
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
-Description: Utility functions for working web applications. Includes parsers
+Description: Utility functions for developing web applications. Includes parsers
     for application/x-www-form-urlencoded as well as multipart/form-data
     requests and examples of using the parser with either httpuv or rhttpd.
 License: MIT + file LICENSE
