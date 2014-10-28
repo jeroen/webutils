@@ -5,6 +5,9 @@
 \usage{
 parse_query(query)
 }
+\arguments{
+\item{query}{a url-encoded query string}
+}
 \description{
 Parse http parameters from a query string. This includes unescaping
 of url-encoded values.

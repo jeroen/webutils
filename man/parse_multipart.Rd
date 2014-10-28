@@ -12,16 +12,18 @@ parse_multipart(body, boundary)
 }
 \description{
 Parse a multipart/form-data request, which is usually generated from a HTML form
-submission. The parameters can include both text as well as binary (file) values.
+submission. The parameters can include both text values as well as binary files.
 They can be distinguished from the presence of a \code{filename} attribute.
 }
 \details{
 A multipart/form-data request consists of a single body which contains one or more
-values with meta data, each separated using a boundary string. This boundary string
+values plus meta-data, separated using a boundary string. This boundary string
 is chosen by the client (e.g. the browser) and specified in the \code{Content-Type}
-header of the HTTP request.
+header of the HTTP request. There is no escaping; it is up to the client to choose
+a boundary string that does not appear in one of the values.
 
-The parse is written in pure R, but still pretty fast.
+The parser is written in pure R, but still pretty fast because it uses the regex
+engine.
 }
 \examples{
 \dontrun{

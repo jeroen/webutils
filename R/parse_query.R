@@ -10,6 +10,7 @@
 #'
 #' @export
 #' @importFrom utils URLdecode
+#' @param query a url-encoded query string
 #' @examples q <- "foo=1%2B1%3D2&bar=yin%26yang"
 #' parse_query(q)
 parse_query <- function(query){

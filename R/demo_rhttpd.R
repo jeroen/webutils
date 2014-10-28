@@ -53,7 +53,7 @@ demo_rhttpd <- function(){
   }
 
   # Start the built-in R dynamic help server.
-  try(tools::startDynamicHelp(TRUE), silent=TRUE);
+  try(startDynamicHelp(TRUE), silent=TRUE);
   port <- getFromNamespace("httpdPort", "tools")
   handlers_env <- getFromNamespace(".httpd.handlers.env", "tools")
   assign("test", rhttpd_handler, handlers_env)
