@@ -17,12 +17,14 @@
 #' # Parse url-encoded payload
 #' parse_http("foo=1%2B1%3D2&bar=yin%26yang", "application/x-www-form-urlencoded")
 #'
-#' # Use demo app to parse multipart/form-data payload
+#' \dontrun{use demo app to parse multipart/form-data payload
 #' demo_rhttpd()
+#' }
 parse_http <- function(body, content_type, ...){
   # Remove header name if present
   content_type <- sub("Content-Type: ?", "", content_type, ignore.case=TRUE);
 
+  # Switch by content-type
   if(grepl("multipart/form-data; boundary=", content_type, fixed=TRUE)){
     return(parse_multipart(body, get_boundary(content_type)))
   } else if(grepl("application/x-www-form-urlencoded", content_type, fixed=TRUE)){
