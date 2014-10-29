@@ -11,6 +11,7 @@ Description: Utility functions for developing web applications. Includes parsers
 License: MIT + file LICENSE
 Imports:
     tools,
-    utils
+    utils,
+    jsonlite
 Suggests:
     httpuv

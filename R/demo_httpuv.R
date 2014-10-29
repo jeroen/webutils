@@ -25,8 +25,7 @@ demo_httpuv <- function(){
     } else {
       # Parse the multipart/form-data
       message("Received HTTP POST request.")
-      boundary <- get_boundary(content_type)
-      postdata <- parse_multipart(request_body, boundary)
+      postdata <- parse_http(request_body, content_type)
 
       # Print it to the R console (just for fun)
       str(postdata)
@@ -48,8 +47,9 @@ demo_httpuv <- function(){
   }
 
   # Start httpuv
-  httpuv::startDaemonizedServer("0.0.0.0", 12345, list(call = rook_handler))
-  url <- paste0("http://localhost:12345/")
+  random_port <- round(runif(1, 1e4, 5e4));
+  httpuv::startDaemonizedServer("0.0.0.0", random_port, list(call = rook_handler))
+  url <- paste0("http://localhost:", random_port, "/")
   message("Opening ", url)
   browseURL(url)
 }

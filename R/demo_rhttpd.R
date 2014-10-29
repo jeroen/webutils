@@ -29,8 +29,7 @@ demo_rhttpd <- function(){
       message("Received HTTP POST request.")
 
       # Check for multipart()
-      boundary <- get_boundary(content_type)
-      postdata <- parse_multipart(reqbody, boundary)
+      postdata <- parse_http(reqbody, content_type)
 
       # Print it to the R console (just for fun)
       str(postdata)

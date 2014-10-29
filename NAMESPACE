@@ -2,8 +2,9 @@
 
 export(demo_httpuv)
 export(demo_rhttpd)
-export(get_boundary)
+export(parse_http)
 export(parse_multipart)
 export(parse_query)
+importFrom(jsonlite,fromJSON)
 importFrom(tools,startDynamicHelp)
 importFrom(utils,URLdecode)
