@@ -16,8 +16,7 @@
 #' @export
 #' @param body body of the HTTP request. Must be raw or character vector.
 #' @param boundary boundary string as specified in the \code{Content-Type} request header.
-#' @examples \dontrun{
-#' # Launch the example page
+#' @examples \dontrun{example form
 #' demo_rhttpd()
 #' }
 parse_multipart <- function(body, boundary){

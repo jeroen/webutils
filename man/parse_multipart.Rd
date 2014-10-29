@@ -26,8 +26,7 @@ The parser is written in pure R, but still pretty fast because it uses the regex
 engine.
 }
 \examples{
-\dontrun{
-# Launch the example page
+\dontrun{example form
 demo_rhttpd()
 }
 }
