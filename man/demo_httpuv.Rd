@@ -3,7 +3,10 @@
 \alias{demo_httpuv}
 \title{Demo multipart parser with httpuv}
 \usage{
-demo_httpuv()
+demo_httpuv(port)
+}
+\arguments{
+\item{port}{which port number to run the http server}
 }
 \description{
 Starts the httpuv web server and hosts a simple form including a file

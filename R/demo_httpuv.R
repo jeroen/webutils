@@ -4,7 +4,8 @@
 #' upload to demo the multipart parser.
 #
 #' @export
-demo_httpuv <- function(){
+#' @param port which port number to run the http server
+demo_httpuv <- function(port){
   rook_handler <- function(env){
 
     # See Rook spec
@@ -48,9 +49,10 @@ demo_httpuv <- function(){
   }
 
   # Start httpuv
-  random_port <- round(runif(1, 2e4, 5e4));
-  httpuv::startDaemonizedServer("0.0.0.0", random_port, list(call = rook_handler))
-  url <- paste0("http://localhost:", random_port, "/")
+  if(missing(port))
+    port <- round(runif(1, 2e4, 5e4));
+  httpuv::startDaemonizedServer("0.0.0.0", port, list(call = rook_handler))
+  url <- paste0("http://localhost:", port, "/")
   message("Opening ", url)
   browseURL(url)
 }
