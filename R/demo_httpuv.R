@@ -16,7 +16,8 @@ demo_httpuv <- function(){
     # Show HTML page for GET requests.
     if(http_method == "GET"){
       message("Received HTTP GET request: ", path)
-      testpage <- system.file("testpage.html", package="multipart");
+      testpage <- system.file("testpage.html", package="webutils");
+      stopifnot(file.exists(testpage))
       list (
         status = 200,
         body = paste(readLines(testpage), collapse="\n"),
@@ -47,7 +48,7 @@ demo_httpuv <- function(){
   }
 
   # Start httpuv
-  random_port <- round(runif(1, 1e4, 5e4));
+  random_port <- round(runif(1, 2e4, 5e4));
   httpuv::startDaemonizedServer("0.0.0.0", random_port, list(call = rook_handler))
   url <- paste0("http://localhost:", random_port, "/")
   message("Opening ", url)

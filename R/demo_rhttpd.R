@@ -17,7 +17,8 @@ demo_rhttpd <- function(){
     # Show HTML page for GET requests.
     if(http_method == "GET" || is.null(reqbody)){
       message("Received HTTP GET request: ", reqpath)
-      testpage <- system.file("testpage.html", package="multipart");
+      testpage <- system.file("testpage.html", package="webutils");
+      stopifnot(file.exists(testpage))
       list(
         "payload" = readBin(testpage, raw(), n=file.info(testpage)$size),
         "content-type" = "text/html",
