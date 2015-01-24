@@ -52,8 +52,8 @@ demo_rhttpd <- function(){
     }
   }
 
-  # Start the built-in R dynamic help server.
-  port <- try(startDynamicHelp(TRUE), silent=TRUE);
+  # Starts the built-in R dynamic help server if needed.
+  port <- startDynamicHelp(NA);
 
   # In old versions of R we need to get the port from this variable
   if(R.version[["svn rev"]] < 67550) {
