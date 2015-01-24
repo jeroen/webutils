@@ -52,12 +52,12 @@ demo_rhttpd <- function(){
     }
   }
 
-  # Starts the built-in R dynamic help server if needed.
-  port <- try(startDynamicHelp(NA), silent=TRUE);
-
-  # In old versions of R we need to get the port from this variable
-  if(R.version[["svn rev"]] < 67550) {
-    port <- getFromNamespace("httpdPort", "tools")
+  # Start rhttpd and get port
+  port <- if(R.version[["svn rev"]] < 67550) {
+    try(startDynamicHelp(TRUE), silent=TRUE);
+    getFromNamespace("httpdPort", "tools");
+  } else {
+    startDynamicHelp(NA);
   }
 
   handlers_env <- getFromNamespace(".httpd.handlers.env", "tools")
