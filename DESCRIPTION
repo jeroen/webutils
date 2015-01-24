@@ -1,8 +1,8 @@
 Package: webutils
 Type: Package
 Title: Utility Functions for Web Applications
-Version: 0.2
-Date: 2014-10-29
+Version: 0.3
+Date: 2015-01-24
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen.ooms@stat.ucla.edu>
 Description: Utility functions for developing web applications. Includes parsers
