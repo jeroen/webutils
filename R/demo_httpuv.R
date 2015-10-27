@@ -4,6 +4,8 @@
 #' upload to demo the multipart parser.
 #
 #' @export
+#' @importFrom stats runif
+#' @importFrom utils browseURL getFromNamespace head str tail
 #' @param port which port number to run the http server
 demo_httpuv <- function(port){
   rook_handler <- function(env){
