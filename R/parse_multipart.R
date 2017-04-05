@@ -24,89 +24,54 @@ parse_multipart <- function(body, boundary){
   if(is.character(body))
     body <- charToRaw(paste(body, collapse=""))
 
-  if(is.raw(boundary))
-    boundary <- rawToChar(boundary)
+  if(is.character(boundary))
+    boundary <- charToRaw(boundary)
 
-  stopifnot(is.raw(body))
-  stopifnot(is.character(boundary))
+  # Heavy lifting in C
+  stopifnot(is.raw(body), is.raw(boundary))
+  form_data <- split_by_boundary(body, boundary)
 
-  # Extract the boundary string from the HTTP header
-  boundary <- paste0("--", boundary)
-  boundary_length <- nchar(boundary);
+  # Output
+  out <- lapply(form_data, function(val){
+    headers <- parse_header(val[[1]])
+    c(list(
+      value = val[[2]]
+    ), headers)
+  })
 
-  # Find the locations of the boundary string
-  indexes <- grepRaw(boundary, body, fixed=TRUE, all=TRUE);
-
-  if(!length(indexes))
-    stop("Boundary was not found in the body.")
-
-  if(length(indexes) == 1){
-    if(length(body) < (boundary_length+5)){
-      # Empty HTML5 FormData object
-      return(list())
-    } else {
-      # Something went wrong
-      stop("The 'boundary' was only found once in the multipart/form-data message. It should appear at least twice. The request-body might be truncated.")
-    }
-  }
-
-  parts <- list();
-  for(i in seq_along(head(indexes, -1))){
-    from <- indexes[i] + boundary_length;
-    to <- indexes[i+1] -1;
-    parts[[i]] <- body[from:to];
-  }
-
-  out <- lapply(parts, multipart_sub);
-  names(out) <- vapply(out, function(x){as.character(x$name)}, character(1))
-  return(out)
+  names(out) <- sapply(out, `[[`, 'name');
+  out
 }
 
-multipart_sub <- function(bodydata){
-  stopifnot(is.raw(bodydata));
-  splitchar <- grepRaw("\\r\\n\\r\\n|\\n\\n|\\r\\r", bodydata);
-  if(!length(splitchar))
-    stop("Invalid multipart subpart:\n\n", rawToChar(bodydata));
-
-  headers <- bodydata[1:(splitchar-1)];
-  headers <- trail(rawToChar(headers));
-  headers <- gsub("\r\n", "\n", headers);
-  headers <- gsub("\r", "\n", headers);
-  headerlist <- unlist(lapply(strsplit(headers, "\n")[[1]], trail));
-
-  dispindex <- grep("^Content-Disposition:", headerlist);
-  if(!length(dispindex))
-    stop("Content-Disposition header not found:", headers);
-  dispheader <- headerlist[dispindex];
-
-  #get parameter name
-  m <- regexpr("; name=\\\"(.*?)\\\"", dispheader);
-  if(m < 0)
-    stop('failed to find the name="..." header')
-
-  namefield <- unquote(sub("; name=", "", regmatches(dispheader, m), fixed=TRUE));
-
-  #test for file upload
-  m <- regexpr("; filename=\\\"(.*?)\\\"", dispheader);
-  if(m < 0){
-    filenamefield = NULL;
-  } else {
-    filenamefield <- unquote(sub("; filename=", "", regmatches(dispheader, m), fixed=TRUE));
+parse_header <- function(buf){
+  headers <- strsplit(rawToChar(buf), "\r\n", fixed = TRUE)[[1]]
+  out <- split_names(headers, ": ")
+  if(length(out$content_disposition)){
+    pieces <- strsplit(out$content_disposition, "; ")[[1]]
+    out$content_disposition <- pieces[1]
+    out <- c(out, lapply(split_names(pieces[-1], "="), unquote))
   }
+  out
+}
 
-  #filedata
-  splitval  <- grepRaw("\\r\\n\\r\\n|\\n\\n|\\r\\r", bodydata, value=TRUE);
-  start <- splitchar + length(splitval);
-  if(identical(tail(bodydata,2), charToRaw("\r\n"))){
-    end <- length(bodydata)-2;
-  } else {
-    end <- length(bodydata)-1;
-  }
+#' @useDynLib webutils R_split_boundary
+split_by_boundary <- function(body, boundary){
+  .Call(R_split_boundary, body, boundary)
+}
 
-  #the actual fields
-  list (
-    name = namefield,
-    value = bodydata[start:end],
-    filename = filenamefield
-  )
+#' @useDynLib webutils R_split_string
+split_by_string <- function(string, split = ":"){
+  .Call(R_split_string, string, split)
+}
+
+#' @useDynLib webutils R_unquote
+unquote <- function(string){
+  .Call(R_unquote, string)
+}
+
+split_names <- function(x, split){
+  matches <- lapply(x, split_by_string, split)
+  names <- chartr("-", "_", tolower(sapply(matches, `[[`, 1)))
+  values <- lapply(matches, `[[`, 2)
+  structure(values, names = names);
 }
