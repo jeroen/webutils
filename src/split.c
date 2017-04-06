@@ -46,8 +46,9 @@ SEXP R_split_boundary(SEXP body, SEXP boundary){
   //find the needles
   int count = 0;
   unsigned char * cur = NULL;
-  for(count = 0; (cur = my_memmem(haystack, n, needle, m)); count++){
+  for(count = 0; (cur = my_memmem(haystack, n, needle, m)) && (m > n); count++){
     offsets[count] = cur;
+    n = n - (cur - haystack) - m;
     haystack = cur + m;
   }
 
