@@ -1,14 +1,37 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
-language: R
-sudo: false
+language: r
 cache: packages
+
+matrix:
+  include:
+    - os: linux
+      r: oldrel
+    - os: linux
+      r: release
+    - os: linux
+      r: devel
+    - os: linux
+      dist: trusty
+      env: R_CODECOV=true
+      r_check_args: '--use-valgrind'
+    - os: osx
+      osx_image: xcode8.2
+      latex: false
+    - os: osx
+      osx_image: xcode7.3
+      latex: false
+    - os: osx
+      osx_image: beta-xcode6.4
+      latex: false
+
+addons:
+  apt:
+    packages:
+    - valgrind
 
 r_github_packages:
   - jimhester/covr
 
 warnings_are_errors: true
-#r_check_revdep: true
 
 notifications:
   email:
@@ -16,4 +39,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - Rscript -e 'covr::codecov(type = "all")'
+  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
