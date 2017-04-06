@@ -1,4 +1,4 @@
-context("post")
+context("fixed post data")
 
 # Example with various types from 'curl' vignette
 test_that("parsing example post", {
