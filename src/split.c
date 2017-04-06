@@ -12,7 +12,7 @@ void * my_memmem(const void *l, size_t l_len, const void *s, size_t s_len);
 //split by first CRLF
 SEXP split_header(unsigned char * haystack, size_t n){
   SEXP out = PROTECT(allocVector(VECSXP, 2));
-  unsigned char * cur = memmem(haystack, n, "\r\n\r\n", 4);
+  unsigned char * cur = my_memmem(haystack, n, "\r\n\r\n", 4);
   if(cur){
     size_t len = cur - haystack;
     SEXP header = allocVector(RAWSXP, len);
