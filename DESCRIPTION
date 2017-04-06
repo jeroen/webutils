@@ -16,5 +16,6 @@ Imports:
     stats,
     jsonlite
 Suggests:
-    httpuv
+    httpuv,
+    testthat
 RoxygenNote: 6.0.1
