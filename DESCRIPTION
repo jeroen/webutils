@@ -16,6 +16,9 @@ Imports:
     stats,
     jsonlite
 Suggests:
+    curl (>= 2.4.9000),
     httpuv,
     testthat
 RoxygenNote: 6.0.1
+Remotes: jeroen/curl
+
