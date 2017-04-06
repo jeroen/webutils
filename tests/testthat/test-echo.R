@@ -40,9 +40,10 @@ test_that("test echo from httpuv", {
 })
 
 test_that("Echo a big file", {
-  # Create a big file (160 MB)
+  # Create a random file (16 MB)
+  # Note: can test even bigger files but curl_echo() is a bit slow
   tmp <- tempfile()
-  buf <- serialize(rnorm(2e7), NULL)
+  buf <- serialize(rnorm(2e6), NULL)
   writeBin(buf, tmp)
   on.exit(unlink(tmp))
 
