@@ -12,9 +12,7 @@ test_that("test echo from httpuv", {
      logo = curl::form_file(logo, "image/jpeg")
   )
   req <- curl::curl_echo(h)
-  headers <- curl::parse_headers(req$headers)
-  ctype <- grep("Content-Type:", headers, value = TRUE)
-  formdata <- parse_http(req$content, ctype)
+  formdata <- parse_http(req$body, req$CONTENT_TYPE)
 
   # foo = "blabla"
   expect_equal(rawToChar(formdata$foo$value), "blabla")
@@ -40,19 +38,17 @@ test_that("test echo from httpuv", {
 })
 
 test_that("Echo a big file", {
-  # Create a random file (16 MB)
+  # Create a random file (32 MB)
   # Note: can test even bigger files but curl_echo() is a bit slow
   tmp <- tempfile()
-  buf <- serialize(rnorm(2e6), NULL)
+  buf <- serialize(rnorm(4e6), NULL)
   writeBin(buf, tmp)
   on.exit(unlink(tmp))
 
   # Roundtrip via httpuv
   h <- curl::handle_setform(curl::new_handle(), myfile = curl::form_file(tmp))
   req <- curl::curl_echo(h)
-  headers <- curl::parse_headers(req$headers)
-  ctype <- grep("Content-Type:", headers, value = TRUE)
-  formdata <- parse_http(req$content, ctype)
+  formdata <- parse_http(req$body, req$CONTENT_TYPE)
 
   # Tests
   expect_length(formdata$myfile$value, file.info(tmp)$size)
