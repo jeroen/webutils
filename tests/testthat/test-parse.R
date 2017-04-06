@@ -14,7 +14,7 @@ test_that("parsing example post", {
   expect_null(out$foo$content_type)
 
   # iris = form_data(serialize(iris, NULL), "application/rda"),
-  expect_equal(out$iris$value, serialize(iris, NULL))
+  expect_equal(out$iris$value, readBin('iris.orig', raw(), 1e5))
   expect_equal(out$iris$content_type, "application/rda")
 
   # description = form_file(system.file("DESCRIPTION")),
