@@ -48,8 +48,8 @@ test_that("Echo a big file", {
 
   # Roundtrip via httpuv
   h <- curl::handle_setform(curl::new_handle(), myfile = curl::form_file(tmp))
-  req <- curl::curl_echo(h)
-  formdata <- parse_http(req$body, req$CONTENT_TYPE)
+  formdata <- curl::curl_echo(h)
+  formdata <- parse_http(req$body, req$content_type)
 
   # Tests
   expect_length(formdata$myfile$value, file.info(tmp)$size)
