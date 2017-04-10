@@ -4,6 +4,7 @@
 #' upload to demo the multipart parser.
 #
 #' @export
+#' @family demo
 #' @importFrom stats runif
 #' @importFrom utils browseURL getFromNamespace head str tail
 #' @param port which port number to run the http server

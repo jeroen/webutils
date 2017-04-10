@@ -4,6 +4,7 @@
 #' upload to demo the multipart parser.
 #
 #' @export
+#' @family demo
 #' @importFrom tools startDynamicHelp
 demo_rhttpd <- function(){
   rhttpd_handler <- function(reqpath, reqquery, reqbody, reqheaders){
