@@ -38,10 +38,11 @@ test_that("test echo from httpuv", {
 })
 
 test_that("Echo a big file", {
-  # Create a random file (32 MB)
-  # Note: can test even bigger files but curl_echo() is a bit slow
+  # Create a random file (~30 MB)
+  # Note: can test even bigger files but curl_echo() is a bit slow on Windows
   tmp <- tempfile()
-  buf <- serialize(rnorm(4e6), NULL)
+  n <- runif(1, 3e6, 4e6)
+  buf <- serialize(rnorm(n), NULL)
   writeBin(buf, tmp)
   on.exit(unlink(tmp))
 
@@ -52,6 +53,6 @@ test_that("Echo a big file", {
 
   # Tests
   expect_length(formdata$myfile$value, file.info(tmp)$size)
-  expect_equal(formdata$myfile$filename, basename(tmp))
-  expect_equal(formdata$myfile$value, buf)
+  expect_identical(formdata$myfile$filename, basename(tmp))
+  expect_identical(formdata$myfile$value, buf)
 })
