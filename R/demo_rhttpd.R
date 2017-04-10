@@ -15,17 +15,8 @@ demo_rhttpd <- function(){
     http_method <- sub("Request-Method: ?", "", http_method, ignore.case=TRUE);
 
     # Show HTML page for GET requests.
-    if(http_method == "GET" || is.null(reqbody)){
-      message("Received HTTP GET request: ", reqpath)
-      testpage <- system.file("testpage.html", package="webutils");
-      stopifnot(file.exists(testpage))
-      list(
-        "payload" = readBin(testpage, raw(), n=file.info(testpage)$size),
-        "content-type" = "text/html",
-        "headers" = NULL,
-        "status code" = 200
-      )
-    } else {
+    if(tolower(http_method) %in% c("post", "put") && length(reqbody)){
+
       # Parse the multipart/form-data
       message("Received HTTP POST request.")
 
@@ -46,6 +37,16 @@ demo_rhttpd <- function(){
       list(
         "payload" = paste0("User: ", username, "\nEmail: ", email, "\nPicture (copy): ", picture,"\nFood: ", food, "\n"),
         "content-type" = "text/plain",
+        "headers" = NULL,
+        "status code" = 200
+      )
+    } else {
+      message("Received HTTP GET request: ", reqpath)
+      testpage <- system.file("testpage.html", package="webutils");
+      stopifnot(file.exists(testpage))
+      list(
+        "payload" = readBin(testpage, raw(), n=file.info(testpage)$size),
+        "content-type" = "text/html",
         "headers" = NULL,
         "status code" = 200
       )
