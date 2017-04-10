@@ -12,7 +12,7 @@ test_that("test echo from httpuv", {
      logo = curl::form_file(logo, "image/jpeg")
   )
   req <- curl::curl_echo(h)
-  formdata <- parse_http(req$body, req$CONTENT_TYPE)
+  formdata <- parse_http(req$body, req$content_type)
 
   # foo = "blabla"
   expect_equal(rawToChar(formdata$foo$value), "blabla")
@@ -48,7 +48,7 @@ test_that("Echo a big file", {
 
   # Roundtrip via httpuv
   h <- curl::handle_setform(curl::new_handle(), myfile = curl::form_file(tmp))
-  formdata <- curl::curl_echo(h)
+  req <- curl::curl_echo(h)
   formdata <- parse_http(req$body, req$content_type)
 
   # Tests
