@@ -1,7 +1,7 @@
 Package: webutils
 Type: Package
 Title: Utility Functions for Developing Web Applications
-Version: 0.4.9000
+Version: 0.5
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: High performance in-memory http request parser which supports 
@@ -13,7 +13,7 @@ BugReports: https://github.com/jeroen/webutils/issues
 Imports:
     jsonlite
 Suggests:
-    curl (>= 2.4.9000),
+    curl (>= 2.5),
     httpuv,
     testthat
 RoxygenNote: 6.0.1
