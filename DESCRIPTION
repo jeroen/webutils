@@ -11,9 +11,6 @@ License: MIT + file LICENSE
 URL: https://github.com/jeroen/webutils
 BugReports: https://github.com/jeroen/webutils/issues
 Imports:
-    tools,
-    utils,
-    stats,
     jsonlite
 Suggests:
     curl (>= 2.4.9000),

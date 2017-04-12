@@ -5,7 +5,6 @@
 #
 #' @export
 #' @family demo
-#' @importFrom tools startDynamicHelp
 demo_rhttpd <- function(){
   rhttpd_handler <- function(reqpath, reqquery, reqbody, reqheaders){
 
@@ -25,7 +24,7 @@ demo_rhttpd <- function(){
       postdata <- parse_http(reqbody, content_type)
 
       # Print it to the R console (just for fun)
-      str(postdata)
+      utils::str(postdata)
 
       # process this form
       username <- rawToChar(as.raw(postdata$username$value))
@@ -56,15 +55,15 @@ demo_rhttpd <- function(){
 
   # Start rhttpd and get port
   port <- if(R.version[["svn rev"]] < 67550) {
-    try(startDynamicHelp(TRUE), silent=TRUE);
-    getFromNamespace("httpdPort", "tools");
+    try(tools::startDynamicHelp(TRUE), silent=TRUE);
+    utils::getFromNamespace("httpdPort", "tools");
   } else {
-    startDynamicHelp(NA);
+    tools::startDynamicHelp(NA);
   }
 
-  handlers_env <- getFromNamespace(".httpd.handlers.env", "tools")
+  handlers_env <- utils::getFromNamespace(".httpd.handlers.env", "tools")
   assign("test", rhttpd_handler, handlers_env)
   url <- paste0("http://localhost:", port, "/custom/test")
   message("Opening ", url)
-  browseURL(url)
+  utils::browseURL(url)
 }

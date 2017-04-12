@@ -4,7 +4,7 @@
 \alias{demo_httpuv}
 \title{Demo multipart parser with httpuv}
 \usage{
-demo_httpuv(port)
+demo_httpuv(port = 9359)
 }
 \arguments{
 \item{port}{which port number to run the http server}

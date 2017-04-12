@@ -5,10 +5,8 @@
 #
 #' @export
 #' @family demo
-#' @importFrom stats runif
-#' @importFrom utils browseURL getFromNamespace head str tail
 #' @param port which port number to run the http server
-demo_httpuv <- function(port){
+demo_httpuv <- function(port = 9359){
   rook_handler <- function(env){
 
     # See Rook spec
@@ -24,7 +22,7 @@ demo_httpuv <- function(port){
       postdata <- parse_http(body, content_type)
 
       # Print it to the R console (just for fun)
-      str(postdata)
+      utils::str(postdata)
 
       # process this form
       username <- rawToChar(as.raw(postdata$username$value))
@@ -52,8 +50,8 @@ demo_httpuv <- function(port){
   }
 
   # Start httpuv
-  if(missing(port))
-    port <- round(runif(1, 2e4, 5e4));
+  if(!length(port))
+    port <- round(stats::runif(1, 2e4, 5e4));
   server_id <- httpuv::startServer("0.0.0.0", port, list(call = rook_handler))
   on.exit({
     message("stopping server")
@@ -61,8 +59,8 @@ demo_httpuv <- function(port){
   }, add = TRUE)
   url <- paste0("http://localhost:", port, "/")
   message("Opening ", url)
-  browseURL(url)
+  utils::browseURL(url)
   repeat {
-    httpuv::service(100)
+    httpuv::service()
   }
 }
