@@ -3,10 +3,14 @@
 #include <string.h>
 #include <stdint.h>
 
-#if defined(_WIN32) || defined(__sun)
-void * my_memmem(const void *l, size_t l_len, const void *s, size_t s_len);
-#else
+#if !defined(_WIN32) && !defined(__sun)
+#define HAVE_MEMMEM
+#endif
+
+#ifdef HAVE_MEMMEM
 #define my_memmem memmem
+#else
+void * my_memmem(const void *l, size_t l_len, const void *s, size_t s_len);
 #endif
 
 //split by first CRLF
@@ -91,7 +95,7 @@ SEXP R_unquote(SEXP string){
 }
 
 
-#ifdef _WIN32
+#ifndef HAVE_MEMMEM
 void * my_memmem(const void *l, size_t l_len, const void *s, size_t s_len)  {
   register char *cur, *last;
   const char *cl = (const char *)l;
