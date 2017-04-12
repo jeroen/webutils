@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdint.h>
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__sun)
 void * my_memmem(const void *l, size_t l_len, const void *s, size_t s_len);
 #else
 #define my_memmem memmem
