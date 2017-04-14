@@ -6,7 +6,7 @@ Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: High performance in-memory http request parser for application/json, 
     multipart/form-data, and application/x-www-form-urlencoded requests. Includes
-    live demo of hosting and parsing forms with either httpuv or rhttpd.
+    live demo of hosting and parsing multipart forms with either httpuv or rhttpd.
 License: MIT + file LICENSE
 URL: https://github.com/jeroen/webutils
 BugReports: https://github.com/jeroen/webutils/issues
