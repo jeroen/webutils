@@ -1,7 +1,7 @@
 Package: webutils
 Type: Package
 Title: Utility Functions for Developing Web Applications
-Version: 0.5
+Version: 0.6
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: High performance in-memory http request parser for application/json, 
