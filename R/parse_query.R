@@ -13,19 +13,20 @@
 #' @examples q <- "foo=1%2B1%3D2&bar=yin%26yang"
 #' parse_query(q)
 parse_query <- function(query){
-  if(is.raw(query)){
+  if(is.raw(query))
     query <- rawToChar(query);
-  }
   stopifnot(is.character(query));
 
   #httpuv includes the question mark in query string
   query <- sub("^[?]", "", query)
+  query <- chartr('+',' ', query)
 
   #split by & character
-  argslist <- sub("^&", "", regmatches(query, gregexpr("(^|&)[^=]+=[^&]+", query))[[1]])
-  argslist <- strsplit(argslist, "=");
-  values <- lapply(argslist, function(x){if(length(x) < 2) "" else paste(x[-1], collapse="=")});
-  values <- lapply(values, function(s) {utils::URLdecode(chartr('+',' ',s))});
-  names(values) <- lapply(argslist, "[[", 1);
+  argstr <- strsplit(query, "&", fixed = TRUE)[[1]]
+  args <- lapply(argstr, function(x){
+    curl::curl_unescape(strsplit(x, "=", fixed = TRUE)[[1]])
+  })
+  values <- lapply(args, `[`, 2)
+  names(values) <- vapply(args, `[`, character(1), 1)
   return(values)
 }
