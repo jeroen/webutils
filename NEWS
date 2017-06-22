@@ -1,3 +1,6 @@
+0.6
+  - Use curl_unescape() in parse_query() because utils::URLdecode() is broken for UTF-8
+
 0.5
   - Rewrite of multipart parser in C
   - Use the new curl::curl_echo() function to test the parser
