@@ -4,6 +4,6 @@ get_boundary <- function(content_type){
     stop("Content type is not multipart/form-data: ", content_type)
 
   # Extract bounary
-  content_type <- sub("content-type: ?", "", content_type, ignore.case = TRUE)
-  sub("multipart/form-data; boundary=", "", content_type, fixed = TRUE)
+  m <- regexpr('boundary=[^; ]{2,}', content_type, ignore.case = TRUE)
+  sub('boundary=','',regmatches(content_type, m)[[1]])
 }

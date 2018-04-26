@@ -1,3 +1,6 @@
+0.7
+  - Ignore additional fields such as charset from the multipart boundary
+
 0.6
   - Use curl_unescape() in parse_query() because utils::URLdecode() is broken for UTF-8
   - Assume UTF-8 for all strings in rawToChar()
