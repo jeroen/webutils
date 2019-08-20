@@ -1,5 +1,6 @@
-0.7
+1.0
   - Ignore additional fields such as charset from the multipart boundary
+  - Fix a unit test to avoid a bug in libcurl: https://github.com/curl/curl/issues/4246
 
 0.6
   - Use curl_unescape() in parse_query() because utils::URLdecode() is broken for UTF-8
