@@ -4,9 +4,9 @@ Title: Utility Functions for Developing Web Applications
 Version: 1.0
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
-Description: High performance in-memory http request parser for application/json, 
-    multipart/form-data, and application/x-www-form-urlencoded. Includes live demo
-    of hosting and parsing multipart forms with either 'httpuv' or 'Rhttpd'.
+Description: Parses http request data in application/json, multipart/form-data, 
+    or application/x-www-form-urlencoded format. Includes example of hosting
+    and parsing html form data in R using either 'httpuv' or 'Rhttpd'.
 License: MIT + file LICENSE
 URL: https://github.com/jeroen/webutils
 BugReports: https://github.com/jeroen/webutils/issues
@@ -17,3 +17,4 @@ Suggests:
     httpuv,
     testthat
 RoxygenNote: 6.0.1
+Language: en-US
