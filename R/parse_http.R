@@ -25,7 +25,7 @@ parse_http <- function(body, content_type, ...){
   content_type <- sub("Content-Type: ?", "", content_type, ignore.case=TRUE);
 
   # Switch by content-type
-  if(grepl("multipart/form-data; boundary=", content_type, fixed=TRUE)){
+  if(grepl("multipart/form-data;", content_type, fixed=TRUE) && grepl("boundary=", content_type, fixed=TRUE)){
     return(parse_multipart(body, get_boundary(content_type)))
   } else if(grepl("application/x-www-form-urlencoded", content_type, fixed=TRUE)){
     return(parse_query(body))
