@@ -14,6 +14,7 @@ Starts the httpuv web server and hosts a simple form including a file
 upload to demo the multipart parser.
 }
 \seealso{
-Other demo: \code{\link{demo_rhttpd}}
+Other demo: 
+\code{\link{demo_rhttpd}()}
 }
 \concept{demo}
