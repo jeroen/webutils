@@ -24,6 +24,9 @@ parse_multipart <- function(body, boundary){
   if(is.character(body))
     body <- charToRaw(paste(body, collapse=""))
 
+  # Remove quotes if any
+  boundary <- sub('^"(.*)"$', "\\1", boundary)
+
   if(is.character(boundary))
     boundary <- charToRaw(boundary)
 
