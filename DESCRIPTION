@@ -1,7 +1,7 @@
 Package: webutils
 Type: Package
 Title: Utility Functions for Developing Web Applications
-Version: 1.2
+Version: 1.2.0
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: Parses http request data in application/json, multipart/form-data, 
