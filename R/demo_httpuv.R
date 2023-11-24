@@ -51,7 +51,7 @@ demo_httpuv <- function(port = 9359){
 
   # Start httpuv
   if(!length(port))
-    port <- round(stats::runif(1, 2e4, 5e4));
+    port <- httpuv::randomPort()
   server_id <- httpuv::startServer("0.0.0.0", port, list(call = rook_handler))
   on.exit({
     message("stopping server")

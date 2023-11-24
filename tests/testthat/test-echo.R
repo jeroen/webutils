@@ -11,7 +11,7 @@ test_that("test echo from httpuv", {
      description = curl::form_file(desc),
      logo = curl::form_file(logo, "image/jpeg")
   )
-  req <- curl::curl_echo(h)
+  req <- curl::curl_echo(h, port = httpuv::randomPort())
   formdata <- parse_http(req$body, req$content_type)
 
   # foo = "blabla"
@@ -52,7 +52,7 @@ test_that("Echo a big file", {
 
   # Roundtrip via httpuv
   h <- curl::handle_setform(curl::new_handle(forbid_reuse = TRUE), myfile = curl::form_file(tmp))
-  req <- curl::curl_echo(h)
+  req <- curl::curl_echo(h, port = httpuv::randomPort())
   formdata <- parse_http(req$body, req$content_type)
 
   # Tests
