@@ -1,3 +1,6 @@
+1.2.1
+  - Fix Rd link 'anchor'
+
 1.2.0
   - Remove quotes from bounary if any (#8)
   - Use httpuv::randomPort() in tests and examples
