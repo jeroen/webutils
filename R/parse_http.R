@@ -4,7 +4,7 @@
 #' header. Currently supports the three most important content types:
 #' \code{application/x-www-form-urlencoded} (\code{\link{parse_query}}),
 #' \code{multipart/form-data} (\code{\link{parse_multipart}}) and
-#' \code{application/json} (\code{\link{fromJSON}}).
+#' \code{application/json} (\code{\link[jsonlite:fromJSON]{fromJSON}}).
 #'
 #' @export
 #' @param body request body of the http request
