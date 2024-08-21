@@ -5,8 +5,8 @@
 #'
 #' For http GET requests, the query string is specified
 #' in the URL after the question mark. For http POST or PUT requests, the query
-#' string can be used in the request body when the \code{Content-Type} header
-#' is set to \code{application/x-www-form-urlencoded}.
+#' string can be used in the request body when the `Content-Type` header
+#' is set to `application/x-www-form-urlencoded`.
 #'
 #' @export
 #' @param query a url-encoded query string

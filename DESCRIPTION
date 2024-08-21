@@ -2,8 +2,8 @@ Package: webutils
 Type: Package
 Title: Utility Functions for Developing Web Applications
 Version: 1.2.1
-Author: Jeroen Ooms
-Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
+Authors@R: person("Jeroen", "Ooms", role = c("aut", "cre"), email = "jeroen@berkeley.edu",
+      comment = c(ORCID = "0000-0002-4035-0289"))
 Description: Parses http request data in application/json, multipart/form-data, 
     or application/x-www-form-urlencoded format. Includes example of hosting
     and parsing html form data in R using either 'httpuv' or 'Rhttpd'.
@@ -16,5 +16,7 @@ Imports:
 Suggests:
     httpuv,
     testthat
-RoxygenNote: 7.0.2
+RoxygenNote: 7.3.2.9000
 Language: en-US
+Roxygen: list(markdown = TRUE)
+Encoding: UTF-8

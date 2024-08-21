@@ -2,11 +2,11 @@
 #'
 #' Parse a multipart/form-data request, which is usually generated from a HTML form
 #' submission. The parameters can include both text values as well as binary files.
-#' They can be distinguished from the presence of a \code{filename} attribute.
+#' They can be distinguished from the presence of a `filename` attribute.
 #'
 #' A multipart/form-data request consists of a single body which contains one or more
 #' values plus meta-data, separated using a boundary string. This boundary string
-#' is chosen by the client (e.g. the browser) and specified in the \code{Content-Type}
+#' is chosen by the client (e.g. the browser) and specified in the `Content-Type`
 #' header of the HTTP request. There is no escaping; it is up to the client to choose
 #' a boundary string that does not appear in one of the values.
 #'
@@ -15,7 +15,7 @@
 #'
 #' @export
 #' @param body body of the HTTP request. Must be raw or character vector.
-#' @param boundary boundary string as specified in the \code{Content-Type} request header.
+#' @param boundary boundary string as specified in the `Content-Type` request header.
 #' @examples \dontrun{example form
 #' demo_rhttpd()
 #' }

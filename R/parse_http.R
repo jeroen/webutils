@@ -1,10 +1,10 @@
 #' Parse http request
 #'
-#' Parse the body of a http request, based on the \code{Content-Type} request
+#' Parse the body of a http request, based on the `Content-Type` request
 #' header. Currently supports the three most important content types:
-#' \code{application/x-www-form-urlencoded} (\code{\link{parse_query}}),
-#' \code{multipart/form-data} (\code{\link{parse_multipart}}) and
-#' \code{application/json} (\code{\link[jsonlite:fromJSON]{fromJSON}}).
+#' `application/x-www-form-urlencoded` with [parse_query()],
+#' `multipart/form-data` with [parse_multipart()], and `application/json`
+#' with [jsonlite::fromJSON()].
 #'
 #' @export
 #' @param body request body of the http request

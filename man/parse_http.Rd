@@ -16,9 +16,9 @@ parse_http(body, content_type, ...)
 \description{
 Parse the body of a http request, based on the \code{Content-Type} request
 header. Currently supports the three most important content types:
-\code{application/x-www-form-urlencoded} (\code{\link{parse_query}}),
-\code{multipart/form-data} (\code{\link{parse_multipart}}) and
-\code{application/json} (\code{\link{fromJSON}}).
+\code{application/x-www-form-urlencoded} with \code{\link[=parse_query]{parse_query()}},
+\code{multipart/form-data} with \code{\link[=parse_multipart]{parse_multipart()}}, and \code{application/json}
+with \code{\link[jsonlite:fromJSON]{jsonlite::fromJSON()}}.
 }
 \examples{
 # Parse json encoded payload:
