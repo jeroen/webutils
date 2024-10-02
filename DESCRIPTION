@@ -1,7 +1,7 @@
 Package: webutils
 Type: Package
 Title: Utility Functions for Developing Web Applications
-Version: 1.2.1
+Version: 1.2.2
 Authors@R: person("Jeroen", "Ooms", role = c("aut", "cre"), email = "jeroenooms@gmail.com",
       comment = c(ORCID = "0000-0002-4035-0289"))
 Description: Parses http request data in application/json, multipart/form-data, 
