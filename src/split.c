@@ -75,7 +75,7 @@ SEXP R_split_boundary(SEXP body, SEXP boundary){
 SEXP R_split_string(SEXP string, SEXP split){
   const char * str = CHAR(STRING_ELT(string, 0));
   const char * cut = CHAR(STRING_ELT(split, 0));
-  char * out = strstr(str, cut);
+  const char * out = strstr(str, cut);
   if(!out)
     return string;
   SEXP res = PROTECT(allocVector(STRSXP, 2));
